@@ -25,12 +25,13 @@ pip install infini-retri==0.0.2
 It's very convenient. You just need to pass in the model and its tokenizer directly, or you can simply passing in the model name or path. Additionally, it should be noted that our method can only using in tranditional **attention-based** Transformer, and the parameter of "attn_implementation" currently only using **"eager"**.
 
 ```python  
-from infini_retri import InfiniRetri
-
+from transformers import AutoTokenizer
+from transformers import AutoModelForCausalLM
 model_name_or_path = "Qwen/Qwen2.5-0.5B-Instruct" #  "./models/Qwen2.5-0.5B-Instruct"
 model = AutoModelForCausalLM.from_pretrained(model_name_or_path, attn_implementation="eager") # attn_implementation only using "eager"
-tokenizer = AutoTokenizer.from_pretrained(model_name)
+tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
 
+from infini_retri import InfiniRetri
 ir = InfiniRetri(model, tokenizer)
 # ir = InfiniRetri(name_or_path=model_name_or_path) 
 ```
