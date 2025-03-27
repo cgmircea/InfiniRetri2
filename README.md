@@ -22,7 +22,7 @@ pip install infini-retri==0.0.3
 ```
 
 ### Our Method Initialization
-It's very convenient. You just need to pass in the model and its tokenizer directly, or you can simply passing in the model name or path. Additionally, it should be noted that our method can only using in tranditional **attention-based** Transformer, and the parameter of "attn_implementation" currently only using **"eager"**.
+It's very convenient. You just need to pass in the model and its tokenizer directly, or you can simply passing in the model name or path. Additionally, it should be noted that our method can only using in tranditional **attention-based** Transformer, and the parameter of "attn_implementation" currently should using "eager" or "sdpa", and .
 
 ```python  
 from infini_retri import InfiniRetri
