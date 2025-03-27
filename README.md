@@ -1,6 +1,6 @@
 # Infinite Retrieval
 
-## Introduce
+## Introduction
 Implementation of currently Submitting Paper: "**Infinite Retrieval: Attention Enhanced LLMs in Long Context Processing**", which can apply any Transformer-based LLMs(Large Language Moidels) to handle unlimited length texts without training.
 
 Notably，our method **InfiniRretri** can enable the 0.5B(Qwen2.5-0.5B-Instruct), which originally had a maximum context length of 32K, to Haystack(retrieval) up over 1M tokens on Needle-In-a-Haystack(NIH) test, and even theoretically **infinite-length**.
@@ -22,14 +22,14 @@ pip install infini-retri==0.0.3
 ```
 
 ### Our Method Initialization
-It's very convenient. You just need to pass in the model and its tokenizer directly, or you can simply passing in the model name or path. Additionally, it should be noted that our method can only using in tranditional **attention-based** Transformer, and the parameter of "attn_implementation" currently only using **"eager"**.
+It's very convenient. You just need to pass in the model and its tokenizer directly, or you can simply passing in the model name or path. Additionally, it should be noted that our method can only using in tranditional **attention-based** Transformer, and the parameter of "attn_implementation" can be either **"eager"** or **"sdpa"**.
 
 ```python  
 from infini_retri import InfiniRetri
 
 model_name_or_path = "Qwen/Qwen2.5-0.5B-Instruct" #  "./models/Qwen2.5-0.5B-Instruct"
 model = AutoModelForCausalLM.from_pretrained(model_name_or_path, attn_implementation="eager") # attn_implementation only using "eager"
-tokenizer = AutoTokenizer.from_pretrained(model_name)
+tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
 
 ir = InfiniRetri(model, tokenizer)
 # ir = InfiniRetri(name_or_path=model_name_or_path) 
